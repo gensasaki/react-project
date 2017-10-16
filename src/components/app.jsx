@@ -10,9 +10,9 @@ class App extends Component {
     };
   }
 
-handleNameChange(name) {
-  this.setState({ name });
-}
+  handleNameChange(name) {
+    this.setState({ name });
+  }
 
   render() {
     return (

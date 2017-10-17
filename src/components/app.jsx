@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import SearchForm from './SearchForm';
 import GeocodeResult from './GeocodeResult';
+import Map from './Map';
 
 const GEOCODE_ENDPOINT = 'https://maps.googleapis.com/maps/api/geocode/json';
 
@@ -25,11 +26,11 @@ class App extends Component {
     axios
       .get(GEOCODE_ENDPOINT, { params: { address: place } })
       .then((results) => {
-        const { data } = results.data;
+        const data = results.data;
         const result = data.results[0];
         switch (data.status) {
           case 'OK': {
-            const { location } = result.geometry.location;
+            const location = result.geometry.location;
             this.setState({
               address: result.formatted_address,
               lat: location.lat,
@@ -61,6 +62,7 @@ class App extends Component {
           lat={this.state.lat}
           lng={this.state.lng}
         />
+        <Map lat={this.state.lat} lng={this.state.lng} />
       </div>
     );
   }

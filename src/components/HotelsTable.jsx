@@ -6,7 +6,14 @@ import HotelRow from './HotelRow';
 const HotelsTable = ({ hotels }) => (
   <table>
     <tbody>
-      <tr><th>Hotel</th></tr>
+      <tr>
+        <th>Image</th>
+        <th>Hotel</th>
+        <th className="hotel-price-column">Price</th>
+        <th>Review</th>
+        <th>Review counts</th>
+        <th>Distance</th>
+      </tr>
       {hotels.map(hotel => (<HotelRow key={hotel.id} hotel={hotel} />))}
     </tbody>
   </table>

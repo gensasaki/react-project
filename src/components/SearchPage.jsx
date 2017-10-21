@@ -4,9 +4,9 @@ import _ from 'lodash';
 import queryString from 'query-string';
 
 import SearchForm from './SearchForm';
-import GeocodeResult from './GeocodeResult';
-import Map from './Map';
-import HotelsTable from './HotelsTable';
+// import GeocodeResult from './GeocodeResult';
+// import Map from './Map';
+// import HotelsTable from './HotelsTable';
 
 import { geocode } from '../domain/Geocoder';
 import { searchHotelByLocation } from '../domain/HotelRepository';
@@ -52,8 +52,9 @@ class SearchPage extends Component {
     });
   }
 
-  handlePlaceChange(place) {
-    this.setState({ place });
+  handlePlaceChange(e) {
+    e.preventDefault();
+    this.props.onPlaceChange(e.target.value);
   }
 
   handlePlaceSubmit(e) {
@@ -100,11 +101,11 @@ class SearchPage extends Component {
       <div className="search-page">
         <h1 className="app-title">Search Hotel in Japan</h1>
         <SearchForm
-          place={this.state.place}
-          onPlaceChange={place => this.handlePlaceChange(place)}
+          place={this.props.place}
+          onPlaceChange={e => this.handlePlaceChange(e)}
           onSubmit={e => this.handlePlaceSubmit(e)}
         />
-        <div className="result-area">
+        {/* <div className="result-area">
           <Map location={this.state.location} />
           <div className="result-right">
             <GeocodeResult
@@ -118,7 +119,7 @@ class SearchPage extends Component {
               onSort={sortKey => this.handleSortKeyChange(sortKey)}
             />
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }
@@ -127,6 +128,8 @@ class SearchPage extends Component {
 SearchPage.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func }).isRequired,
   location: PropTypes.shape({ search: PropTypes.string }).isRequired,
+  onPlaceChange: PropTypes.func.isRequired,
+  place: PropTypes.string.isRequired,
 };
 
 export default SearchPage;

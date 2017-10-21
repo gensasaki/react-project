@@ -7,6 +7,11 @@ module.exports = {
       "prefer-destructuring": ["error", {
         "array": false,
         "object": false
-      }]
+      }],
+      "no-restricted-globals": [
+        "error",
+        "event",
+        "fdescribe",
+      ],
     }
 };

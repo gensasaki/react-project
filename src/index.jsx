@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 // import App from './components/App';
-import SearchPage from './components/SearchPage';
+import App from './components/App';
 import reducer from './reducers/';
 
 const store = createStore(
@@ -16,10 +16,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <SearchPage
-      history={history}
-      location={location}
-    />
+    <App />
   </Provider>,
   document.querySelector('.container'),
 );
